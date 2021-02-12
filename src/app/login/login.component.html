@@ -1,0 +1,33 @@
+<mat-card>
+
+  <mat-card-title>
+    Logowanie
+  </mat-card-title>
+
+  <mat-card-subtitle>
+    Zaloguj się aby uzyskać dostęp do chatu
+  </mat-card-subtitle>
+
+  <mat-card-content>
+
+    <mat-form-field appearance="fill" style="width:100%">
+
+      <mat-label>Wprowadz adres email</mat-label>
+      <input matInput placeholder="kowalski@poczta.pl" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid"> {{ getErrorMessage() }} </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width:100%">
+      <mat-label>Wprowadz hasło</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" required>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ukryj hasło'"
+              [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary"> Zaloguj </button>
+
+  </mat-card-content>
+</mat-card>
