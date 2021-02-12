@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +9,26 @@ import {FormControl, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  hide = true;
+  passwordHide = true;
 
-  constructor() { }
+  loginForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
   }
 
-  getErrorMessage(): string {
-    if (this.email.hasError('required')) {
-      return 'Musisz wprowadzic adres email';
+  login(): void {
+    if (this.loginForm.invalid) {
+      return;
     }
-
-    return this.email.hasError('email') ? 'Wprowadzono nieprawidlowy adres email.' : '';
+    console.log(this.loginForm.value);
   }
+
 
 }
