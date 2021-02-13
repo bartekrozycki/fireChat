@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../../models/user';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-chat',
@@ -7,8 +6,6 @@ import {User} from '../../models/user';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-
-  @Input() user: User;
 
   constructor() { }
 

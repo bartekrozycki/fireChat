@@ -4,12 +4,10 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {LoginComponent} from './components/sign/components/login/login.component';
-import {RegisterComponent} from './components/sign/components/register/register.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {AngularFireModule} from '@angular/fire';
@@ -17,18 +15,14 @@ import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AuthService} from './services/auth-service.service';
-import { SignComponent } from './components/sign/sign.component';
-import { DashComponent } from './components/dash/dash.component';
-import { ChatComponent } from './components/chat/chat.component';
+import { ChatComponent } from './chat/chat.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    SignComponent,
-    DashComponent,
-    ChatComponent
+    HomeComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +37,7 @@ import { ChatComponent } from './components/chat/chat.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    FormsModule,
   ],
   providers: [
     AuthService
