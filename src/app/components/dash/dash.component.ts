@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth-service.service';
-import {User} from '../../shared/services/user';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-dash',
