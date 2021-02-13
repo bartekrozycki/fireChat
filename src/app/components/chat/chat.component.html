@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-title> Chat</mat-card-title>
+
+  <mat-card-subtitle> Zalogowany jako <b>{{ user.email  }}</b></mat-card-subtitle>
+
+  <mat-card-content>
+    <mat-card>
+      message
+    </mat-card>
+  </mat-card-content>
+  <mat-card-actions>
+    <form>
+      <mat-form-field>
+        <mat-label>Message</mat-label>
+        <input matInput maxlength="256">
+      </mat-form-field>
+      <button mat-raised-button color="primary"> Wyslij </button>
+    </form>
+  </mat-card-actions>
+
+</mat-card>

@@ -1,4 +1,5 @@
+<button id="logout" mat-fab color="warn" (click)="logout()">
+  Logout
+</button>
 
-<button mat-flat-button (click)="logout()">Log out</button>
-siema
-<h3> logged as {{ userData?.email }}</h3>
+<app-chat [user]="userData"></app-chat>

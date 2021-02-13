@@ -19,6 +19,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AuthService} from './services/auth-service.service';
 import { SignComponent } from './components/sign/sign.component';
 import { DashComponent } from './components/dash/dash.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DashComponent } from './components/dash/dash.component';
     LoginComponent,
     RegisterComponent,
     SignComponent,
-    DashComponent
+    DashComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
