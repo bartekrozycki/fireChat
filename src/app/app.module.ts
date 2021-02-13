@@ -17,6 +17,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AuthService} from './services/auth-service.service';
 import { ChatComponent } from './chat/chat.component';
 import { HomeComponent } from './home/home.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HomeComponent } from './home/home.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     FormsModule,
+    MatTabsModule,
   ],
   providers: [
     AuthService

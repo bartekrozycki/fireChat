@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from './services/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'chat';
 
-  constructor() {
+  constructor(public auth: AuthService) {
+    // auth.signInWithEmail('akalik19786@gmail.pl', '1234567890');
+    auth.signOut();
   }
 }
