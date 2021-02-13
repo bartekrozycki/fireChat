@@ -67,6 +67,7 @@
       </div>
 
       <button mat-flat-button color="primary" type="submit"> Zarejestruj </button>
+      <mat-error  *ngIf="authErrors"> {{ authErrors.message }} </mat-error>
 
     </form>
 

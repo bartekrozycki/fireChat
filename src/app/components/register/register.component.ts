@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../services/auth-service.service';
+import {Router} from '@angular/router';
 
 function passwordMatchValidator(frm: FormGroup): { mismatch: boolean } {
   const password = frm.get('password').value;
@@ -20,8 +22,9 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   passwordHide = true;
   passwordConfirmHide = true;
+  authErrors = null;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, public authService: AuthService, private route: Router) {
   }
 
   ngOnInit(): void {
@@ -38,7 +41,18 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    console.log(this.registerForm.value);
+    const email = this.registerForm.get('email').value;
+    const password = this.registerForm.get('passwordGroup.password').value;
+
+    this.authService.signUpWithEmail(email, password)
+      .then(() => {
+        this.route.navigate(['/']);
+      })
+      .catch((error) => {
+        this.authErrors = error;
+        console.log(error);
+      });
+
   }
 
 }

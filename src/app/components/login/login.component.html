@@ -43,6 +43,7 @@
       </mat-form-field>
 
       <button mat-flat-button color="primary" type="submit"> Zaloguj</button>
+      <mat-error  *ngIf="authErrors"> {{ authErrors.message }} </mat-error>
 
     </form>
   </mat-card-content>

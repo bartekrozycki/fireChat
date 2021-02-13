@@ -16,12 +16,17 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AuthService} from './services/auth-service.service';
+import { SignComponent } from './components/sign/sign.component';
+import { DashComponent } from './components/dash/dash.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SignComponent,
+    DashComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,9 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     AngularFireAuthModule,
     AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
