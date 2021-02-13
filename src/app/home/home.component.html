@@ -4,11 +4,10 @@
     <mat-tab-group mat-stretch-tabs>
 
       <mat-tab label="Logowanie">
-        Formularz logowanei
+        <app-signin></app-signin>
       </mat-tab>
       <mat-tab label="Rejestracja">
-        Formularz rejestracja
-
+        <app-signup></app-signup>
       </mat-tab>
 
     </mat-tab-group>
@@ -20,5 +19,6 @@
   <pre>
     {{ user | json }}
   </pre>
+  <button mat-flat-button (click)="auth.signOut()">Log out</button>
 </div>
 

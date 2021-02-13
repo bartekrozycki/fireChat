@@ -18,12 +18,17 @@ import {AuthService} from './services/auth-service.service';
 import { ChatComponent } from './chat/chat.component';
 import { HomeComponent } from './home/home.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { SigninComponent } from './signin/signin.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ChatComponent,
+    SigninComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     AngularFirestoreModule,
     FormsModule,
     MatTabsModule,
+    MatSnackBarModule,
   ],
   providers: [
     AuthService

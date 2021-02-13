@@ -27,6 +27,7 @@ export class AuthService {
         }
       })
     );
+
   }
 
   getUser(): Promise<any>{
@@ -37,9 +38,6 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         this.updateUserData(userCredential.user);
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }
 
@@ -47,9 +45,6 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         this.updateUserData(userCredential.user);
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }
 
