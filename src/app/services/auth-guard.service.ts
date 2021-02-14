@@ -21,6 +21,7 @@ export class AuthGuard implements CanActivate {
       map(user => !!user),
       tap(loggedIn => {
         if (!loggedIn) {
+          this.auth.redirectUrl = state.url;
           // noinspection JSIgnoredPromiseFromCall
           this.router.navigate(['/']);
         }

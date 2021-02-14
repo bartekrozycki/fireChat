@@ -14,10 +14,15 @@
   justify-content: flex-start;
 }
 .message {
-  margin: 1vh 1vw;
   padding: 1vh 1vw;
   border-radius: 10px;
   background-color: rgba(0,0,0,0.1);
+  margin: 1vh 10vw 1vh 1vw;
+}
+.mymessage {
+  background-color: rgba(0, 41, 255, 0.1)!important;
+  margin-left: 10vw;
+  margin-right: 1vw;
 }
 mat-form-field {
   width: 100%;

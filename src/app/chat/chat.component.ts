@@ -10,6 +10,7 @@ import {AuthService} from '../services/auth-service.service';
 })
 export class ChatComponent implements OnInit, OnChanges {
   @Input() chatId: string;
+  userId: string;
 
   chat$;
   newMessage: string;
@@ -39,6 +40,10 @@ export class ChatComponent implements OnInit, OnChanges {
     if (this.chatId === undefined) {
       this.chatId = this.route.snapshot.paramMap.get('id');
     }
+    this.auth.user$.subscribe(x => {
+      this.userId = x.uid;
+    });
+
     const source = this.cs.get(this.chatId);
     this.chat$ = this.cs.joinUsers(source);
   }

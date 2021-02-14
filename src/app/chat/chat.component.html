@@ -1,14 +1,14 @@
 <div class="link" *ngIf="chatId">
-  <input hidden type="text" value="{{siteUrl}}/chat/{{chatId}}" #userinput>
+  <input type="text" value="{{siteUrl}}/chats/{{chatId}}" #userinput>
   <button mat-flat-button color="primary" (click)="copyInputMessage(userinput)" value="Skopiuj link do dołączenia" >Copy link</button>
 </div>
 
 <div class="container" *ngIf="chat$ | async as chat">
 
   <div class="messages">
-    <div class="message" *ngFor="let msg of chat.messages">
+    <div class="message" [class.mymessage]="userId == msg.uid" *ngFor="let msg of chat.messages">
       <b> {{ msg.user?.email }} </b>
-      <i>{{ msg.createdAt | date}}</i>
+      <i>{{ msg.createdAt | date:'medium'}}</i>
       <p>{{ msg.message }}</p>
 
     </div>

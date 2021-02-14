@@ -6,6 +6,7 @@ import {first, switchMap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import firebase from 'firebase';
 import Persistence = firebase.auth.Auth.Persistence;
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,13 @@ import Persistence = firebase.auth.Auth.Persistence;
 
 export class AuthService {
   user$: Observable<any>;
+  public redirectUrl: string;
 
   public user: User; // Save logged in user data
 
   constructor(private afs: AngularFirestore,
-              private afAuth: AngularFireAuth) {
+              private afAuth: AngularFireAuth,
+              private route: Router) {
 
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
@@ -41,6 +44,10 @@ export class AuthService {
       return this.afAuth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
           this.updateUserData(userCredential.user);
+          if (this.redirectUrl) {
+            this.route.navigate([this.redirectUrl]);
+            this.redirectUrl = null;
+          }
         });
     }).catch( (e) => {
       console.log(e);
@@ -52,6 +59,10 @@ export class AuthService {
       return this.afAuth.createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
           this.updateUserData(userCredential.user);
+          if (this.redirectUrl) {
+            this.route.navigate([this.redirectUrl]);
+            this.redirectUrl = null;
+          }
         });
     });
   }
