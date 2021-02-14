@@ -21,6 +21,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { SigninComponent } from './signin/signin.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SignupComponent } from './signup/signup.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SignupComponent } from './signup/signup.component';
     FormsModule,
     MatTabsModule,
     MatSnackBarModule,
+    MatSidenavModule,
   ],
   providers: [
     AuthService

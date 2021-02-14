@@ -14,21 +14,29 @@
   </mat-card>
 </ng-template>
 
-<pre>
-{{ auth.user$ | async | json }}
-</pre>
-<div *ngIf="auth.user$ | async as user; else sign">
-  <pre>
-    {{ user | json }}
-  </pre>
+<ng-container *ngIf="auth.user$ | async as user; else sign">
+  <div class="container">
 
-  <ul>
-    <li *ngFor="let chat of userChats$ | async">
-      <a [routerLink]="'chats/' + chat.id">{{ chat.id }} - {{ chat.messages.length }} Messages </a>
-    </li>
-  </ul>
+    <div class="leftSide">
+      <button class="rect-button" mat-flat-button color="primary" (click)="createChat()">Nowy chat</button>
+      <button class="rect-button" mat-button>Twoje Grupy: </button>
+      <ng-container *ngFor="let chat of userChats$ | async">
+        <button mat-button class="rect-button" [disabled]="currentChat == chat.id" (click)="currentChat = chat.id"> {{ chat.id }} </button>
+      </ng-container>
+      <div class="footer">
+        <button class="rect-button" mat-button>Zalogowany jako: {{ user.email }}</button>
+        <button class="rect-button" mat-flat-button color="warn" (click)="auth.signOut()">Wyloguj</button>
+      </div>
+    </div>
 
-  <button mat-flat-button color="primary" (click)="auth.signOut()">Log out</button>
-  <button mat-flat-button color="accent" (click)="chatService.create()">new chat</button>
-</div>
+
+
+    <div class="rightSide">
+      <app-chat [chatId]="currentChat"></app-chat>
+
+    </div>
+
+  </div>
+
+</ng-container>
 

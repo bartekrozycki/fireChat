@@ -1,0 +1,32 @@
+.container{
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+}
+.link {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.message {
+  margin: 1vh 1vw;
+  padding: 1vh 1vw;
+  border-radius: 10px;
+  background-color: rgba(0,0,0,0.1);
+}
+mat-form-field {
+  width: 100%;
+  flex: 9;
+}
+.form {
+  margin-top: auto;
+  display: flex;
+}
+.form button {
+  flex: 1;
+}

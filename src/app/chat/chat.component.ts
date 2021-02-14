@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ChatService} from '../services/chat.service';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../services/auth-service.service';
@@ -8,9 +8,14 @@ import {AuthService} from '../services/auth-service.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnChanges {
+  @Input() chatId: string;
+
   chat$;
   newMessage: string;
+  url: string;
+
+  siteUrl = location.origin;
 
   constructor(
     public cs: ChatService,
@@ -19,11 +24,22 @@ export class ChatComponent implements OnInit {
   ) {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    const source = this.cs.get(this.chatId);
+    this.chat$ = this.cs.joinUsers(source);
+  }
+
+  copyInputMessage(inputElement): void {
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+  }
+
   ngOnInit(): void {
-    const chatId = this.route.snapshot.paramMap.get('id');
-    console.log(chatId);
-    const source = this.cs.get(chatId);
-    console.log(source);
+    if (this.chatId === undefined) {
+      this.chatId = this.route.snapshot.paramMap.get('id');
+    }
+    const source = this.cs.get(this.chatId);
     this.chat$ = this.cs.joinUsers(source);
   }
 

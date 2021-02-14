@@ -1,14 +1,29 @@
+<div class="link" *ngIf="chatId">
+  <input hidden type="text" value="{{siteUrl}}/chat/{{chatId}}" #userinput>
+  <button mat-flat-button color="primary" (click)="copyInputMessage(userinput)" value="Skopiuj link do dołączenia" >Copy link</button>
+</div>
 
-<ng-container *ngIf="chat$ | async as chat">
+<div class="container" *ngIf="chat$ | async as chat">
 
-  <article *ngFor="let msg of chat.messages">
-    <p>
-      <b> {{ msg.user?.email }}</b> : {{ msg.message }}
-    </p>
-  </article>
-  <div class="form">
-    <input class="input" [(ngModel)]="newMessage" maxlength="100" (keydown.enter)="submit(chat.id)">
+  <div class="messages">
+    <div class="message" *ngFor="let msg of chat.messages">
+      <b> {{ msg.user?.email }} </b>
+      <i>{{ msg.createdAt | date}}</i>
+      <p>{{ msg.message }}</p>
 
-    <button (click)="submit(chat.id)" class="button is-info" [disabled]="!newMessage">Send</button>
+    </div>
+
   </div>
-</ng-container>
+
+
+  <div class="form">
+
+    <mat-form-field>
+      <mat-label>Wiadomosc</mat-label>
+      <input matInput #message [(ngModel)]="newMessage" maxlength="30" (keydown.enter)="submit(chat.id)">
+      <mat-hint align="end">{{message.value.length}} / 30</mat-hint>
+    </mat-form-field>
+
+    <button mat-flat-button color="accent" (click)="submit(chat.id)" class="button is-info" [disabled]="!newMessage">Send</button>
+  </div>
+</div>

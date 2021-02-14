@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AuthService} from './auth-service.service';
-import {Router} from '@angular/router';
 import {map, switchMap} from 'rxjs/operators';
 import {combineLatest, Observable, of} from 'rxjs';
 import firebase from 'firebase';
-import firestore = firebase.firestore;
+import FieldValue = firebase.firestore.FieldValue;
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,6 @@ export class ChatService {
   constructor(
     private afs: AngularFirestore,
     private auth: AuthService,
-    private router: Router
   ) {
   }
 
@@ -31,7 +29,7 @@ export class ChatService {
       );
   }
 
-  async create(): Promise<boolean> {
+  async create(): Promise<string> {
     const {uid} = await this.auth.getUser();
 
     const data = {
@@ -43,7 +41,7 @@ export class ChatService {
 
     const docRef = await this.afs.collection('chats').add(data);
 
-    return this.router.navigate(['chats', docRef.id]);
+    return docRef.id;
 
   }
 
@@ -59,7 +57,7 @@ export class ChatService {
     if (uid) {
       const ref = this.afs.collection('chats').doc(chatId);
       return ref.update({
-        messages: firestore.FieldValue.arrayUnion(data)
+        messages: FieldValue.arrayUnion(data)
       });
     }
   }
@@ -67,7 +65,6 @@ export class ChatService {
   getUserChats(): Observable<any> {
     return this.auth.user$.pipe(
       switchMap(user => {
-        console.log(user);
         return this.afs
           .collection('chats', ref => ref.where('uid', '==', user.uid))
           .snapshotChanges()

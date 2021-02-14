@@ -2,3 +2,26 @@
   max-width: 500px;
   margin: 50px auto;
 }
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+}
+.leftSide {
+  background-color: #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.rightSide {
+  flex: 4;
+}
+
+.rect-button {
+  border-radius: 0!important;
+}
+
+.footer {
+  margin-top: auto;
+}

@@ -9,6 +9,7 @@ import {ChatService} from '../services/chat.service';
 })
 export class HomeComponent implements OnInit {
   userChats$;
+  currentChat: string;
 
   constructor(public auth: AuthService,
               public chatService: ChatService) { }
@@ -17,9 +18,9 @@ export class HomeComponent implements OnInit {
     this.userChats$ = this.chatService.getUserChats();
   }
 
-  test(): void {
-    this.chatService.getUserChats().subscribe(x => {
-      console.log(x);
+  createChat(): void {
+    this.chatService.create().then( e => {
+      this.currentChat = e;
     });
   }
 
