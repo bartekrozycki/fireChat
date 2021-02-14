@@ -2,10 +2,12 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ChatComponent} from './chat/chat.component';
+import {AuthGuard} from './services/auth-guard.service';
 
 const routes: Routes = [
-  {path: '**', component: HomeComponent},
-  {path: 'chats/:id?', component: ChatComponent}
+  {path: '', component: HomeComponent},
+  {path: 'chats/:id', component: ChatComponent, canActivate: [AuthGuard]},
+  {path: '**', redirectTo: '/'}
 ];
 
 @NgModule({

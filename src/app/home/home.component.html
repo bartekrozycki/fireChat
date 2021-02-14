@@ -14,11 +14,21 @@
   </mat-card>
 </ng-template>
 
-
+<pre>
+{{ auth.user$ | async | json }}
+</pre>
 <div *ngIf="auth.user$ | async as user; else sign">
   <pre>
     {{ user | json }}
   </pre>
-  <button mat-flat-button (click)="auth.signOut()">Log out</button>
+
+  <ul>
+    <li *ngFor="let chat of userChats$ | async">
+      <a [routerLink]="'chats/' + chat.id">{{ chat.id }} - {{ chat.messages.length }} Messages </a>
+    </li>
+  </ul>
+
+  <button mat-flat-button color="primary" (click)="auth.signOut()">Log out</button>
+  <button mat-flat-button color="accent" (click)="chatService.create()">new chat</button>
 </div>
 
