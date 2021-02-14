@@ -15,12 +15,12 @@ import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AuthService} from './services/auth-service.service';
-import { ChatComponent } from './chat/chat.component';
-import { HomeComponent } from './home/home.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { HomeComponent } from './components/home/home.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './components/signin/signin.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './components/signup/signup.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
