@@ -22,7 +22,7 @@
              formControlName="password"
              required>
 
-      <button mat-icon-button matSuffix
+      <button mat-icon-button matSuffix type="button"
               (click)="passwordHide = !passwordHide"
               [attr.aria-label]="'Ukryj hasło'"
               [attr.aria-pressed]="passwordHide">
@@ -40,7 +40,7 @@
              formControlName="passwordConfirm"
              required>
 
-      <button mat-icon-button matSuffix
+      <button mat-icon-button matSuffix type="button"
               (click)="passwordConfirmHide = !passwordConfirmHide"
               [attr.aria-label]="'Ukryj hasło'"
               [attr.aria-pressed]="passwordConfirmHide">
